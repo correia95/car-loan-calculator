@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://car-loan-calculator.correia95.workers.dev/sitemap.xml

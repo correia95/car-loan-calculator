@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0d1013" />
+  <text x="90" y="145" font-family="-apple-system, Segoe UI, Roboto, sans-serif" font-size="80" font-weight="800" fill="#e7eaef" letter-spacing="-1">Car Loan Calculator</text>
+  <text x="90" y="200" font-family="-apple-system, Segoe UI, Roboto, sans-serif" font-size="28" fill="#98a1ad">Repayments · deposit &amp; trade-in · balloon payment · real cost</text>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+    <rect x="90" y="270" width="300" height="150" rx="14" fill="#171b21" stroke="#272c35"/>
+    <text x="240" y="335" text-anchor="middle" font-size="52" font-weight="800" fill="#6ea0ff">$624</text>
+    <text x="240" y="375" text-anchor="middle" font-size="22" fill="#98a1ad">per month</text>
+    <text x="240" y="402" text-anchor="middle" font-size="18" fill="#98a1ad">$30,400 over 5 yrs @ 8.5%</text>
+
+    <rect x="410" y="270" width="300" height="150" rx="14" fill="#171b21" stroke="#272c35"/>
+    <text x="560" y="335" text-anchor="middle" font-size="52" font-weight="800" fill="#ef7676">$7,022</text>
+    <text x="560" y="375" text-anchor="middle" font-size="22" fill="#98a1ad">interest</text>
+
+    <rect x="730" y="270" width="380" height="150" rx="14" fill="#171b21" stroke="#272c35"/>
+    <text x="920" y="330" text-anchor="middle" font-size="34" font-weight="800" fill="#e7eaef">Balloon = lower</text>
+    <text x="920" y="372" text-anchor="middle" font-size="34" font-weight="800" fill="#e7eaef">repayment,</text>
+    <text x="920" y="405" text-anchor="middle" font-size="22" fill="#ef7676">more interest</text>
+  </g>
+  <text x="90" y="500" font-family="-apple-system, Segoe UI, Roboto, sans-serif" font-size="24" fill="#6ea0ff">Estimate only · runs in your browser · no sign-up</text>
+</svg>

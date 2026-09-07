@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1d4ed8" />
+
+    <title>Car Loan Calculator — repayments, interest &amp; balloon payment</title>
+    <meta
+      name="description"
+      content="Calculate car loan repayments with a deposit, trade-in, financed fees and a balloon (residual) payment. See the amount financed, total interest, the real cost of the finance, and exactly what a balloon adds to it. Free, runs in your browser."
+    />
+    <link rel="canonical" href="https://car-loan-calculator.correia95.workers.dev/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Car Loan Calculator" />
+    <meta property="og:description" content="Car loan repayments with deposit, trade-in and balloon payment — and the real cost of the finance." />
+    <meta property="og:url" content="https://car-loan-calculator.correia95.workers.dev/" />
+    <meta property="og:image" content="https://car-loan-calculator.correia95.workers.dev/og.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Car Loan Calculator" />
+    <meta name="twitter:description" content="Repayments with deposit, trade-in and balloon — and the real cost of the finance." />
+    <meta name="twitter:image" content="https://car-loan-calculator.correia95.workers.dev/og.svg" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Car Loan Calculator",
+        "url": "https://car-loan-calculator.correia95.workers.dev/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "AUD" },
+        "description": "Calculate car loan repayments including deposit, trade-in, financed fees and a balloon payment, with the total cost of the finance."
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How is a car loan repayment calculated?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Start with the amount financed: the price minus deposit and trade-in, plus anything still owing on the trade-in and any fees rolled into the loan. The repayment is the fixed amount that pays that balance to zero, or to the balloon, over the term, with interest charged each period on the remaining balance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a balloon or residual payment on a car loan?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A balloon is a lump sum, usually a set percentage of the purchase price, that is not paid off during the loan and falls due as one payment at the end. It lowers the regular repayments but you pay interest on it for the whole term, so the total interest is higher. At the end you pay it in cash, refinance it, or sell the car to cover it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does a balloon payment save money?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It reduces the monthly cost but increases the total cost, because the balloon amount accrues interest for the entire loan. It only helps cash flow, and it carries the risk that the car is worth less than the balloon when it falls due."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a comparison rate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A rate that folds most fees into a single figure so you can compare loans fairly. For a quick comparison in this calculator, enter the comparison rate as the interest rate and set financed fees to zero."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <noscript>
+      <p style="text-align: center; padding: 20px">
+        This car loan calculator needs JavaScript. It works out repayments from the price, deposit,
+        trade-in, interest rate, term and an optional balloon payment, and shows the total interest
+        and cost of the finance.
+      </p>
+    </noscript>
+  </body>
+</html>
