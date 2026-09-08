@@ -1,5 +1,7 @@
 // Car loan / finance calculator with balloon (residual) payment. Pure functions.
 
+import { guessCurrency, money as _money } from './intl.ts';
+
 export type Freq = 'weekly' | 'fortnightly' | 'monthly';
 export const PERIODS: Record<Freq, number> = { weekly: 52, fortnightly: 26, monthly: 12 };
 
@@ -89,7 +91,12 @@ export function calculate(i: Inputs): Result {
   };
 }
 
-export const money = (n: number) =>
-  n.toLocaleString('en-AU', { style: 'currency', currency: 'AUD', maximumFractionDigits: 0 });
-export const money2 = (n: number) =>
-  n.toLocaleString('en-AU', { style: 'currency', currency: 'AUD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+let CCY = guessCurrency();
+export function setMoneyCurrency(c: string): void {
+  CCY = c;
+}
+export function moneyCurrency(): string {
+  return CCY;
+}
+export const money = (n: number) => _money(n, CCY, 0);
+export const money2 = (n: number) => _money(n, CCY, 2);

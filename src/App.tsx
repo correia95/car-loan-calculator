@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { DEFAULTS, type Freq, type Inputs, calculate, money, money2 } from './calc';
+import { DEFAULTS, type Freq, type Inputs, calculate, money, money2, setMoneyCurrency } from './calc';
+import { CURRENCIES, currencySymbol, guessCurrency } from './intl';
 
 const KEYS: (keyof Inputs)[] = [
   'price', 'deposit', 'tradeIn', 'payout', 'rate', 'years', 'balloonPct', 'feesFinanced',
@@ -45,21 +46,35 @@ function Field({
   );
 }
 
+function readCurrency(): string {
+  try {
+    const c = new URLSearchParams(window.location.search).get('cur');
+    if (c && CURRENCIES.includes(c)) return c;
+  } catch {
+    /* ignore */
+  }
+  return guessCurrency();
+}
+
 export default function App() {
   const [inp, setInp] = useState<Inputs>(readUrl);
+  const [currency, setCurrency] = useState<string>(readCurrency);
   const [copied, setCopied] = useState(false);
   const set = (patch: Partial<Inputs>) => setInp((p) => ({ ...p, ...patch }));
+
+  setMoneyCurrency(currency);
 
   useEffect(() => {
     try {
       const u = new URL(window.location.href);
       for (const k of KEYS) u.searchParams.set(k, String(inp[k]));
       u.searchParams.set('freq', inp.freq);
+      u.searchParams.set('cur', currency);
       window.history.replaceState(null, '', u.toString());
     } catch {
       /* ignore */
     }
-  }, [inp]);
+  }, [inp, currency]);
 
   const r = useMemo(() => calculate(inp), [inp]);
   const noBalloon = useMemo(() => calculate({ ...inp, balloonPct: 0 }), [inp]);
@@ -89,11 +104,17 @@ export default function App() {
       <div className="cols">
         <form className="panel form" onSubmit={(e) => e.preventDefault()}>
           <h2>The car</h2>
-          <Field label="Drive-away price" prefix="$" value={inp.price} onChange={(n) => set({ price: n })} step={500} />
-          <Field label="Cash deposit" prefix="$" value={inp.deposit} onChange={(n) => set({ deposit: n })} step={500} />
+          <label className="field">
+            <span>Currency</span>
+            <select value={currency} onChange={(e) => setCurrency(e.target.value)}>
+              {CURRENCIES.map((c) => <option key={c} value={c}>{c}</option>)}
+            </select>
+          </label>
+          <Field label="Drive-away price" prefix={currencySymbol(currency)} value={inp.price} onChange={(n) => set({ price: n })} step={500} />
+          <Field label="Cash deposit" prefix={currencySymbol(currency)} value={inp.deposit} onChange={(n) => set({ deposit: n })} step={500} />
           <div className="two">
-            <Field label="Trade-in value" prefix="$" value={inp.tradeIn} onChange={(n) => set({ tradeIn: n })} step={500} />
-            <Field label="Owing on trade-in" prefix="$" value={inp.payout} onChange={(n) => set({ payout: n })} step={500} />
+            <Field label="Trade-in value" prefix={currencySymbol(currency)} value={inp.tradeIn} onChange={(n) => set({ tradeIn: n })} step={500} />
+            <Field label="Owing on trade-in" prefix={currencySymbol(currency)} value={inp.payout} onChange={(n) => set({ payout: n })} step={500} />
           </div>
 
           <h2>The finance</h2>
@@ -111,7 +132,7 @@ export default function App() {
           </label>
           <div className="two">
             <Field label="Balloon / residual" hint="% of price" suffix="%" value={inp.balloonPct} onChange={(n) => set({ balloonPct: n })} step={5} />
-            <Field label="Fees added to loan" prefix="$" value={inp.feesFinanced} onChange={(n) => set({ feesFinanced: n })} step={50} />
+            <Field label="Fees added to loan" prefix={currencySymbol(currency)} value={inp.feesFinanced} onChange={(n) => set({ feesFinanced: n })} step={50} />
           </div>
           <p className="note">Nothing is uploaded — figures stay in your browser and the page link.</p>
         </form>
